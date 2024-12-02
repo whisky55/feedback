@@ -13,12 +13,7 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('geladeira_id')->constrained()->onDelete('cascade')->index();
-            $table->text('comentario'); // Alterado para text, caso precise de mais espaço
-            $table->unsignedTinyInteger('estrelas'); // Avaliação de 1 a 5
-            $table->text('resposta')->nullable();
             $table->timestamps();
-            $table->softDeletes(); // Para soft deletes (opcional)
         });
     }
 
@@ -30,4 +25,3 @@ return new class extends Migration
         Schema::dropIfExists('feedbacks');
     }
 };
-

@@ -27,6 +27,7 @@ Route::prefix('geladeira')->group(function () {
     Route::post('/feedback/{id}', [PageController::class, 'storeFeedback'])->name('geladeira.feedback'); // Armazenar feedback
 });
 
+
 Route::post('/geladeira/store/{id}', [PageController::class, 'storeFeedback'])->name('geladeira.store'); // Armazenar feedback
 
 Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

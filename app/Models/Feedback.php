@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Feedback extends Model
 {
     use HasFactory;
-    protected $table = 'feedbacks'; // Defina o nome correto da tabela
-    protected $fillable = ['comentario', 'estrela', 'geladeira_id']; // Adicione os campos aqui
+
+    protected $fillable = [
+        'geladeira_id', 
+        'comentario', 
+        'estrelas',
+    ];
+
+    // Caso o nome da tabela seja diferente de 'feedbacks', você pode definir explicitamente:
+    // protected $table = 'feedbacks'; 
 }

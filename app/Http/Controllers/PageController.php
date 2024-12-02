@@ -35,14 +35,17 @@ public function storeFeedback(Request $request, $id)
         'comentario' => 'required|string|max:255',
     ]);
 
-    // Aqui você pode salvar o feedback no banco de dados.
-    // Por exemplo, você pode usar um modelo chamado Feedback
-    // Feedback::create(['geladeira_id' => $id, 'comentario' => $request->comentario]);
+    // Salvar o feedback no banco de dados
+    \App\Models\Feedback::create([
+        'geladeira_id' => $id,
+        'comentario' => $request->storeFeedback,
+    ]);
 
     // Redirecionar após o sucesso
     return redirect()->route('geladeira.form', ['id' => $id])
                      ->with('success', 'Feedback enviado com sucesso!');
 }
+
 
 
 }
