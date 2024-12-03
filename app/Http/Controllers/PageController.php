@@ -33,18 +33,22 @@ public function storeFeedback(Request $request, $id)
     // Validação dos dados
     $request->validate([
         'comentario' => 'required|string|max:255',
+        'estrela' => 'required|integer|between:1,5',
     ]);
 
     // Salvar o feedback no banco de dados
     \App\Models\Feedback::create([
         'geladeira_id' => $id,
-        'comentario' => $request->storeFeedback,
+        'comentario' => $request->comentario,
+        'estrela' => $request->estrela,  // Adicionando a estrela
     ]);
 
     // Redirecionar após o sucesso
     return redirect()->route('geladeira.form', ['id' => $id])
                      ->with('success', 'Feedback enviado com sucesso!');
 }
+
+
 
 
 

@@ -5,29 +5,24 @@
 @section('content')
     <h1>Comentário sobre a Geladeira</h1>
 
-
     @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-
-
     <form action="{{ route('geladeira.store', ['id' => $id]) }}" method="POST">
         @csrf
         <input type="hidden" name="geladeira_id" value="{{ $id }}">
 
-    
         <div class="form-group">
-            <label for="comment">Nos envie seu feedbeack</label>
-            <textarea id="comment" name="comment" class="form-control" required></textarea>
+            <label for="comment">Nos envie seu feedback</label>
+            <textarea id="comment" name="comentario" class="form-control" required></textarea>
         </div>
-        
+
         <!-- Avaliação por estrelas -->
         <div class="form-group">
             <label for="rating">Sua Avaliação</label>
-
             <ul class="avaliacao">
                 <li class="star-icon" data-avaliacao="1"></li>
                 <li class="star-icon" data-avaliacao="2"></li>
@@ -37,7 +32,13 @@
             </ul>
             <input type="hidden" name="estrela" id="estrela" value="">
         </div>
-        <style>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <a href="{{ route('home') }}" class="btn btn-secondary mt-3">Voltar para a tela inicial</a>
+
+    <style>
         .avaliacao {
             display: flex;
             cursor: pointer;
@@ -62,33 +63,36 @@
         .star-icon:hover::before {
             content: "\2605"; /* Estrela cheia no hover */
         }
-        </style>
+    </style>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-        var stars = document.querySelectorAll(".star-icon");
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var stars = $(".star-icon");
 
-        document.addEventListener("click", function (e) {
-            var classStar = e.target.classList;
-            if (!classStar.contains("ativo")) {
-                stars.forEach(function (star) {
-                    star.classList.remove("ativo");
+            stars.on("click", function() {
+                // Remover a classe 'ativo' de todas as estrelas
+                stars.removeClass("ativo");
+                
+                // Adicionar a classe 'ativo' à estrela clicada
+                $(this).addClass("ativo");
+
+                // Definir o valor de 'estrela' baseado na estrela clicada
+                var rating = $(this).data("avaliacao");
+                $("#estrela").val(rating);
+            });
+
+            // Para manter as estrelas ativadas após o envio do formulário (se já foi avaliado)
+            var estrelaSelecionada = $("#estrela").val();
+            if (estrelaSelecionada) {
+                stars.each(function() {
+                    var estrelaValor = $(this).data("avaliacao");
+                    if (estrelaValor <= estrelaSelecionada) {
+                        $(this).addClass("ativo");
+                    }
                 });
-                classStar.add("ativo");
-
-                var rating = e.target.getAttribute("data-avaliacao");
-                document.getElementById('estrela').value = rating;
             }
         });
-        </script>
+    </script>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-
-    <a href="{{ route('home') }}" class="btn btn-secondary mt-3">Voltar para a tela inicial</a>
 @endsection
-
-
-
-
-        

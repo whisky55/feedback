@@ -1,6 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Adicionando diretamente o CSS */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #007bff;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    /* Outras estilizações podem ser adicionadas aqui */
+</style>
+
 <div class="container">
     <h2>Editar Perfil</h2>
 

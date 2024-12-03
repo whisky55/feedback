@@ -24,12 +24,11 @@ Route::prefix('admin')->group(function() {
 // Rotas para geladeiras
 Route::prefix('geladeira')->group(function () {
     Route::get('/form/{id}', [PageController::class, 'showGeladeiraForm'])->name('geladeira.form'); // Exibir o formulário
-    Route::post('/feedback/{id}', [PageController::class, 'storeFeedback'])->name('geladeira.feedback'); // Armazenar feedback
+    Route::post('/store/{id}', [PageController::class, 'storeFeedback'])->name('geladeira.store'); // Armazenar feedback
 });
 
-
-Route::post('/geladeira/store/{id}', [PageController::class, 'storeFeedback'])->name('geladeira.store'); // Armazenar feedback
-
+// Rota de logout
 Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 require __DIR__.'/auth.php';
+
