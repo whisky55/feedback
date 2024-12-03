@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
+            $table->text('comentario');
+            $table->foreignId('geladeira_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+        
     }
 
     /**
